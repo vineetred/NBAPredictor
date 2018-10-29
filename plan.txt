@@ -1,0 +1,29 @@
+Data processing for different classifiers
+
+Other than normal historical win-loss percentage, what can be done different?
+
+One complexity would be how they were when pitted against each other.
+
+Team composition change? PRT says do we use player stats?
+
+What about individual player’s stats?
+
+How about we create an algorithm to score players (out of 100) and then use that to create our ML program?
+
+If the difference between two players stats is not very high, we use other factors.
+
+>OUR MODEl
+
+#Historical dataset as our training data
+#Use current games to test our model against
+#Player dataset?
+#Average out the player scores to account for rookies
+#Assign a base default score to rookies
+#Meet Kothari soon. Run him through our model and whatever we discussed. What does he think of the project. Do we use other stats? What models should we use? What about activation functions?
+
+>TIMELINE
+
+End of the week, need to have our model ready
+Next week, get our dataset figured out? Some code at least. Clear plan for what we need to do?
+
+
