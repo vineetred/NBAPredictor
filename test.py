@@ -1,0 +1,7 @@
+print("<------ CS303 Machine Learning ------>")
+print("<------ Final Project ------>")
+print("<------ NBA Predictor ------>")
+print("<------ Collaborators ------>")
+print("<------ Mihika Johorey ------>")
+print("<------ Pratyush Ranjan Tiwari ------>")
+print("<------ Sai Vineet Reddy Thatiparthi ------>")
