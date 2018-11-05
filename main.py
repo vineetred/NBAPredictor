@@ -20,10 +20,13 @@ offensivenumberRating = []
 defensiveRating = []
 rating = []
 for i in range(1,31):
-    offensivenumberRating.append(np.array(allStuff[i][10]))
-    defensiveRating.append(np.array(allStuff[i][11]))
-    rating.append(np.array(allStuff[i][12]))
+    offensivenumberRating.append(allStuff[i][10])
+    defensiveRating.append(allStuff[i][11])
+    rating.append(allStuff[i][12])
 
+offensivenumberRating = np.array(offensivenumberRating)
+defensiveRating = np.array(defensiveRating)
+rating = np.array(rating)
 
 
 model.fit([offensivenumberRating,defensiveRating], rating, epochs=5)
