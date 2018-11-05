@@ -19,7 +19,7 @@ model = Sequential()
 model.add(Dense(64, activation='relu',input_dim=2))
 model.add(Dense(64, activation='relu'))
 model.add(Dense(10, activation='relu'))
-model.add(Dense(1, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
 
 model.compile(loss='mean_squared_error',
               optimizer='adam',
