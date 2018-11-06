@@ -5,5 +5,4 @@ print("<------ COLLABORATORS ------>")
 print("<------ Mihika Johorey ------>")
 print("<------ Pratyush Ranjan Tiwari ------>")
 print("<------ Sai Vineet Reddy Thatiparthi ------>")
-print("_   ______  ___       ____  ____  __________  ____________________  ____ 
-   / | / / ")
+print("<------ End ------>")
