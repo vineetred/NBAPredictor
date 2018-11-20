@@ -43,5 +43,6 @@ print(teamName)
 offensiveRating_19 = pd.read_csv('dataset/NBA_Rankings - 2018-19.csv',usecols=['Pace','Assist Ratio','Turnover Ratio','Offensive Rebound Ratio','Defensive Rebound Ratio','Rebound Rate','Effective Field Goal Percentage','Shooting Percentage','Offensive Rating','Defensive Rating','Rating']).values
 print("2018-19")
 print(model.predict(offensiveRating_19)-rating_19,teamName)
+print(model)
 plt.plot(history.history['loss'])
 plt.show()
