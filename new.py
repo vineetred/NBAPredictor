@@ -29,6 +29,13 @@ model.compile(loss='mean_squared_error',
 
 model.fit(np.asarray(teamStats), np.asarray(points), epochs=1000)
 
-hello = np.array([[1,1,2]])
-print(model.predict(hello))
-teams[15]
+hello = np.array([[15,1,1]])
+prediction = model.predict(hello)
+# print(teams[hello[0][0]])
+if(prediction[0][1]>prediction[0][2]):
+  print(teams[hello[0][0]],"wins against",teams[hello[0][2]])
+  print("Score: ",prediction[0][1], "-",prediction[0][2])
+
+else:
+  print(teams[hello[0][2]], " wins against", teams[hello[0][0]])
+  print("Score: ",prediction[0][2], "-",prediction[0][1])

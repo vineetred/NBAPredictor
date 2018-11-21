@@ -1,0 +1,18 @@
+model.add(Dense(60, activation='relu',input_dim=3))
+model.add(Dropout(0.25))
+model.add(Dense(36, activation='relu'))
+model.add(Dense(20, activation='relu'))
+model.add(Dense(3, activation='relu'))
+LOSS MODEL[0] = 98
+
+
+model.add(Dense(60, activation='relu',input_dim=3))
+model.add(Dropout(0.25))
+model.add(Dense(36, activation='relu'))
+model.add(Dense(20, activation='relu'))
+model.add(Dense(20, activation='relu'))
+model.add(Dense(20, activation='relu'))
+model.add(Dense(20, activation='relu'))
+model.add(Dense(10, activation='relu'))
+model.add(Dense(3, activation='relu'))
+LOSS MODEL[1] = 100
