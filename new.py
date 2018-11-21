@@ -38,4 +38,4 @@ model.compile(loss='mean_squared_error',
               metrics=['mape'])
 
 model.fit(np.asarray(X_train), np.asarray(y_train), epochs=1000)
-
+model.evaluate(X_test,y_test)
