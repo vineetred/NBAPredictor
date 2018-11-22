@@ -21,13 +21,17 @@ away = encoder.fit_transform(away)
 homeaway = encoder.fit_transform(ha)
 
 new = np.append(home,away,axis=1)
-new2 = pd.read_csv('dataset/nba.games.stats - nba_prev.csv',usecols=['FieldGoals','FieldGoalsAttempted','FieldGoals.','X3PointShots','X3PointShotsAttempted','X3PointShots.','FreeThrows','FreeThrowsAttempted','FreeThrows.','OffRebounds','TotalRebounds','Assists','Steals','Blocks','Turnovers','TotalFouls',
-                        'Opp.FieldGoals', 'Opp.3PointShotsAttempted', 'Opp.3PointShots.', 'Opp.FreeThrows', 
+# new2 = pd.read_csv('dataset/nba.games.stats - nba_prev.csv',usecols=['FieldGoals','FieldGoalsAttempted','FieldGoals.','X3PointShots','X3PointShotsAttempted','X3PointShots.','FreeThrows','FreeThrowsAttempted','FreeThrows.','OffRebounds','TotalRebounds','Assists','Steals','Blocks','Turnovers','TotalFouls',
+#                         'Opp.FieldGoals', 'Opp.3PointShotsAttempted', 'Opp.3PointShots.', 'Opp.FreeThrows', 
+#                         'Opp.FreeThrowsAttempted', 'Opp.FreeThrows.', 'Opp.OffRebounds', 'Opp.TotalRebounds', 
+#                         'Opp.Assists', 'Opp.Steals', 'Opp.Blocks', 'Opp.Turnovers', 'Opp.TotalFouls',
+#                         'Opp.FieldGoalsAttempted', 'Opp.FieldGoals.', 'Opp.3PointShots']).values
+
+new2 = pd.read_csv('dataset/nba.games.stats - nba_prev.csv',usecols=['FieldGoalsAttempted','FreeThrows','FreeThrowsAttempted','FreeThrows.','OffRebounds','TotalRebounds','Assists','Steals','Blocks','Turnovers','TotalFouls',
+                        'Opp.FreeThrows', 
                         'Opp.FreeThrowsAttempted', 'Opp.FreeThrows.', 'Opp.OffRebounds', 'Opp.TotalRebounds', 
                         'Opp.Assists', 'Opp.Steals', 'Opp.Blocks', 'Opp.Turnovers', 'Opp.TotalFouls',
                         'Opp.FieldGoalsAttempted', 'Opp.FieldGoals.', 'Opp.3PointShots']).values
-
-
 
 
 new3 = np.append(new,homeaway,axis=1)
@@ -42,8 +46,8 @@ X_train, X_test, y_train, y_test = train_test_split(new2, points, test_size=0.40
 
 #MODEL
 model = Sequential()
-keras.optimizers.adam(lr=0.2)
-model.add(Dense(30, activation='relu',input_dim=93))
+keras.optimizers.adam(lr=0.1)
+model.add(Dense(30, activation='relu',input_dim=85))
 model.add(Dropout(0.30))
 # model.add(Dense(46, activation='relu'))
 # model.add(Dense(30, activation='sigmoid'))
@@ -57,7 +61,7 @@ model.compile(loss='mean_squared_error',
               optimizer='adam',
               metrics=['accuracy'])
 
-history = model.fit(np.asarray(X_train),np.asarray(y_train), epochs=80)
+history = model.fit(np.asarray(X_train),np.asarray(y_train), epochs=40)
 print(model.evaluate(X_test,y_test))
 
 
@@ -72,8 +76,8 @@ homeaway = encoder.fit_transform(ha)
 
 
 new = np.append(home,away,axis=1)
-new2 = pd.read_csv('dataset/nba.games.stats - nba_2018.csv',usecols=['FieldGoals','FieldGoalsAttempted','FieldGoals.','X3PointShots','X3PointShotsAttempted','X3PointShots.','FreeThrows','FreeThrowsAttempted','FreeThrows.','OffRebounds','TotalRebounds','Assists','Steals','Blocks','Turnovers','TotalFouls',
-                        'Opp.FieldGoals', 'Opp.3PointShotsAttempted', 'Opp.3PointShots.', 'Opp.FreeThrows', 
+new2 = pd.read_csv('dataset/nba.games.stats - nba_2018.csv',usecols=['FieldGoalsAttempted','FreeThrows','FreeThrowsAttempted','FreeThrows.','OffRebounds','TotalRebounds','Assists','Steals','Blocks','Turnovers','TotalFouls',
+                        'Opp.FreeThrows', 
                         'Opp.FreeThrowsAttempted', 'Opp.FreeThrows.', 'Opp.OffRebounds', 'Opp.TotalRebounds', 
                         'Opp.Assists', 'Opp.Steals', 'Opp.Blocks', 'Opp.Turnovers', 'Opp.TotalFouls',
                         'Opp.FieldGoalsAttempted', 'Opp.FieldGoals.', 'Opp.3PointShots']).values
@@ -91,6 +95,7 @@ points = np.append(points,winLoss,axis=1)
 # points = winLoss
 # X_train, X_test, y_train, y_test = train_test_split(new2, points, test_size=0.40)
 scores = model.evaluate(new2,points)
+print(scores)
 model.summary()
 # print(scores)
 
