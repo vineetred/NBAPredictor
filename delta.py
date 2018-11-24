@@ -42,7 +42,7 @@ points = pd.read_csv('dataset/nba.games.stats - nba_prev.csv',usecols=['TeamPoin
 points = np.append(points,winLoss,axis=1)
 # points.shape
 # points = winLoss
-X_train, X_test, y_train, y_test = train_test_split(new2, points, test_size=0.40)
+X_train, X_test, y_train, y_test = train_test_split(new2, winLoss, test_size=0.40)
 
 #MODEL
 model = Sequential()
@@ -55,7 +55,7 @@ model.add(Dense(25, activation='relu'))
 model.add(Dense(10, activation='relu'))
 
 # model.add(Dense(20, activation='relu'))
-model.add(Dense(3, activation = 'relu'))
+model.add(Dense(1, activation = 'sigmoid'))
 
 model.compile(loss='mean_squared_error',
               optimizer='adam',
@@ -68,6 +68,7 @@ print(model.evaluate(X_test,y_test))
 
 home = pd.read_csv('dataset/nba.games.stats - nba_2018.csv',usecols=['Team'])
 away = pd.read_csv('dataset/nba.games.stats - nba_2018.csv',usecols=['Opponent']).values
+print("HOME: ", home[5],"AWAY: ", away[5])
 ha = pd.read_csv('dataset/nba.games.stats - nba_2018.csv',usecols=['Home']).values
 home = encoder.fit_transform(home)
 away = encoder.fit_transform(away)
@@ -94,14 +95,16 @@ points = np.append(points,winLoss,axis=1)
 # points.shape
 # points = winLoss
 # X_train, X_test, y_train, y_test = train_test_split(new2, points, test_size=0.40)
-scores = model.evaluate(new2,points)
+scores = model.evaluate(new2,winLoss)
 print(scores)
 model.summary()
 # print(scores)
 
+# predict = np.asarray([new2[5]])
+# hello = model.predict(predict)
+# print(hello[0][0], "-",hello[0][1])
+print(new2[5])
 predict = np.asarray([new2[5]])
-hello = model.predict(predict)
-print(hello[0][0], "-",hello[0][1])
-
+print(model.predict(predict))
 plt.plot(history.history['loss'])
 plt.show()
