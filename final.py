@@ -14,7 +14,7 @@ from sklearn.preprocessing import LabelBinarizer
 #CREATING ENCODER OBJECT
 encoder = LabelBinarizer()
 #LOADING DATASETS USING PANDAS
-main = pd.read_csv('dataset/nba.games.stats - nba_2018.csv')
+main = pd.read_csv('dataset/nba.games.stats.csv')
 home = pd.read_csv('dataset/nba.games.stats - nba_prev.csv',usecols=['Team'])
 away = pd.read_csv('dataset/nba.games.stats - nba_prev.csv',usecols=['Opponent']).values
 ha = pd.read_csv('dataset/nba.games.stats - nba_prev.csv',usecols=['Home']).values
@@ -62,7 +62,7 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 
 #FITING
-history = model.fit(np.asarray(X_train),np.asarray(y_train), epochs=50,batch_size=80)
+history = model.fit(np.asarray(X_train),np.asarray(y_train), epochs=50,batch_size=300)
 print(model.evaluate(X_test,y_test))
 predict = np.asarray([stats[674]])
 
@@ -90,6 +90,7 @@ points = pd.read_csv('dataset/nba.games.stats - nba_2018.csv',usecols=['TeamPoin
 points = np.append(points,winLoss,axis=1)
 
 #TESTING EVAL ON 2018 DATASET
+print("2018 Dataset")
 scores = model.evaluate(finalStats,winLoss)
 print(scores)
 model.summary()
