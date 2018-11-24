@@ -10,6 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from keras.utils import to_categorical
 from sklearn.preprocessing import LabelBinarizer
+
 #CREATING ENCODER OBJECT
 encoder = LabelBinarizer()
 #LOADING DATASETS USING PANDAS
@@ -61,7 +62,7 @@ model.compile(loss='binary_crossentropy',
               metrics=['accuracy'])
 
 #FITING
-history = model.fit(np.asarray(X_train),np.asarray(y_train), epochs=50)
+history = model.fit(np.asarray(X_train),np.asarray(y_train), epochs=50,batch_size=80)
 print(model.evaluate(X_test,y_test))
 predict = np.asarray([stats[674]])
 
@@ -95,7 +96,18 @@ model.summary()
 model.predict(predict)
 
 #RANDOM TEST
-predict = np.asarray([finalStats[80]])
-print(finalStats[80])
+predict = np.asarray([finalStats[104]])
+print(finalStats[104])
 print(model.predict(predict))
-# home[230]
+# PREDICTION ANALYSIS
+
+winLoss =  pd.read_csv('dataset/nba.games.stats - nba_2018.csv',usecols=['WINorLOSS']).values
+for i in range(0,len(finalStats)):
+    predict = np.asarray([finalStats[i]])
+    hello = model.predict(predict)
+    if(hello>0.5):
+       print("Game No: ",i,"Home: ",mainTest['Team'][i],"Away: ",mainTest['Opponent'][i],"Prediction: W"," Actual: ",winLoss[i],"ScoreLine: ",mainTest['TeamPoints'][i],"-",mainTest['OpponentPoints'][i])
+       
+    else:
+        print("Game No: ",i,"Home: ",mainTest['Team'][i],"Away: ",mainTest['Opponent'][i],"Prediction: L"," Actual: ",winLoss[i],"ScoreLine: ",mainTest['TeamPoints'][i],"-",mainTest['OpponentPoints'][i])
+
